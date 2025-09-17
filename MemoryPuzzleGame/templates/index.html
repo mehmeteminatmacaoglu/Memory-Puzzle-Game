@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Memory Puzzle Game</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <div class="game-area">
+            <div class="top-bar">
+                <div class="stats">
+                    <div class="stat">Moves: <span id="moves">0</span></div>
+                    <div class="stat">Timer: <span id="timer">0</span> sec</div>
+                </div>
+                <button onclick="window.location.href='/reset'" class="reset-btn">Reset</button>
+            </div>
+
+            <div class="board">
+                {% for card in cards %}
+                <div class="card" onclick="flipCard(this)">
+                    <div class="card-inner">{{ card }}</div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+    <div id="winModal" class="modal">
+        <div class="modal-content">
+            <h2>🎉 Congratulations!</h2>
+            <p>You finished <span id="final-moves"></span> sets in <span id="final-time"></span> seconds.</p>
+            <br>
+            <button onclick="window.location.href='/reset'" class="reset-btn">Play Again</button>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
